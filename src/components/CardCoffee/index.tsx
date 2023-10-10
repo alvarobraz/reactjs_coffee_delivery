@@ -1,8 +1,5 @@
 import { ContentCoffeeCard, ContentType } from './style'
 
-import imgCoffeeExpressoTradicional from '../../assets/img_coffee_expresso_tradicional.svg'
-import imgCoffeeExpressoAmericano from '../../assets/img_coffee_expresso_americano.svg'
-
 import { TypeCoffee } from '../TypeCoffee'
 import { CofeeCard } from '../CofeeCard'
 
@@ -20,14 +17,7 @@ interface PropsCardCoffee {
 export function CardCoffee({ product }: PropsCardCoffee) {
   return (
     <ContentCoffeeCard>
-      <img
-        src={
-          product.img === 'expresso_tradicional'
-            ? imgCoffeeExpressoTradicional
-            : imgCoffeeExpressoAmericano
-        }
-        alt="café"
-      />
+      <img src={product.img} alt="café" />
       <ContentType>
         {product.types.map((type) => (
           <TypeCoffee key={type} nome={type} />

@@ -57,8 +57,9 @@ export const CoffeeList = styled.main`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 2rem;
 `
 export const H3 = styled.h3`
   width: 100%;

@@ -30,7 +30,7 @@ export const ContentCoffeeCard = styled.div`
     padding-bottom: 0.5rem;
 
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 130%;
   }
 
