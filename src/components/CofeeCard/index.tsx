@@ -9,7 +9,7 @@ import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
 
 interface PropsBuy {
-  price: number
+  price: number | string
   quantity: number
 }
 

@@ -2,17 +2,18 @@ import { ContentCoffeeCard, ContentType } from './style'
 
 import { TypeCoffee } from '../TypeCoffee'
 import { CofeeCard } from '../CofeeCard'
+import { PropsCardCoffee } from '../../contexts/Context'
 
-interface PropsCardCoffee {
-  product: {
-    img: string
-    types: string[]
-    name: string
-    description: string
-    price: number
-    quantity: number
-  }
-}
+// interface PropsCardCoffee {
+//   product: {
+//     img: string
+//     types: string[]
+//     name: string
+//     description: string
+//     price: number
+//     quantity: number
+//   }
+// }
 
 export function CardCoffee({ product }: PropsCardCoffee) {
   return (
