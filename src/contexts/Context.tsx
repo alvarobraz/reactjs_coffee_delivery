@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
 import { api } from '../server/api'
 
-interface PropsProducCoffee {
+interface PropsProductCoffee {
   img: string
   types: string[]
   name: string
@@ -21,9 +21,19 @@ export interface PropsCardCoffee {
   }
 }
 
+interface PropsMyProductCoffee {
+  ip: string
+  img: string
+  types: string[]
+  name: string
+  description: string
+  price: number | string
+  quantity: number
+}
+
 interface ContextType {
   getProducts: () => void
-  products: PropsProducCoffee[]
+  products: PropsProductCoffee[]
 }
 
 export const Context = createContext({} as ContextType)
@@ -34,11 +44,12 @@ interface ContextProps {
 
 export function ContextProvider({ children }: ContextProps) {
   const [products, setProducts] = useState([])
+  const [ip, setIP] = useState('')
 
   async function getProducts() {
     const response = await api.get('/produtos')
     const formattedProducts = response.data.map(
-      (product: PropsProducCoffee) => {
+      (product: PropsProductCoffee) => {
         if (typeof product.price === 'number') {
           product.price = product.price.toLocaleString('pt-BR', {
             minimumFractionDigits: 2,
@@ -51,8 +62,14 @@ export function ContextProvider({ children }: ContextProps) {
     setProducts(formattedProducts)
   }
 
+  async function getIp() {
+    const res = await api.get('https://api.ipify.org/?format=json')
+    setIP(res.data.ip)
+  }
+
   useEffect(() => {
     getProducts()
+    getIp()
   }, [])
 
   return (
