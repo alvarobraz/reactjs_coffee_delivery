@@ -1,31 +1,27 @@
-export async function myGeolocation() {
-  if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(async function (position) {
-      const latitude = position.coords.latitude
-      const longitude = position.coords.longitude
+import { PropsMyProductCoffee } from '../contexts/Context'
 
-      await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`,
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.address) {
-            const city = data.address.city
-            const state = data.address.state
-            return { city, state }
-          } else {
-            console.error('Nenhum resultado de geocodificação encontrado.')
-          }
-        })
-        .catch((error) => {
-          console.error(
-            'Erro ao consultar o serviço de geocodificação reversa:',
-            error,
-          )
-          return { city: 'São Paulo', state: 'SP' }
-        })
+export function isCheckExistsMyProduct(
+  myProducts: PropsMyProductCoffee[],
+  productId: string | undefined,
+) {
+  return myProducts.filter((myProduct) => myProduct.id === productId)
+}
+
+export function resultPrice(priceString: string | number, quatitity: number) {
+  const price = priceString.toString()
+  const replacePrice = price.replace(',', '.')
+  const priceToNumber = parseFloat(replacePrice).toFixed(2)
+  return (priceString = parseFloat(priceToNumber) * quatitity)
+}
+
+export function totalMyProducts(myProducts: PropsMyProductCoffee[]) {
+  if (myProducts.length !== 0) {
+    let totalProducts = 0
+    myProducts.map((myProduct) => {
+      totalProducts = Number(myProduct.priceResult) + totalProducts
+      return null
     })
-  } else {
-    console.log('Geolocalização não está disponível no navegador do usuário')
+    return totalProducts
   }
+  return 0
 }

@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import logoCoffeeDelivery from '../../assets/logo_coffee_delivary.svg'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { Cart, Counter, HeaderContainer, Weather } from './styles'
 import { NavLink } from 'react-router-dom'
+import { Context } from '../../contexts/Context'
 
 export function Header() {
-  const counrcard = 3
+  const { countMyProducts } = useContext(Context)
+
+  // const counrcard = 3
 
   const [cidade, setCidade] = useState('')
   const [estado, setEstado] = useState('')
@@ -67,7 +70,7 @@ export function Header() {
           </NavLink>
         </Cart>
         <Counter>
-          <p>{counrcard}</p>
+          <p>{countMyProducts}</p>
         </Counter>
       </nav>
     </HeaderContainer>

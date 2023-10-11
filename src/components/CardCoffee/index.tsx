@@ -26,7 +26,7 @@ export function CardCoffee({ product }: PropsCardCoffee) {
       </ContentType>
       <h1>{product.name}</h1>
       <h2>{product.description}</h2>
-      <CofeeCard price={product.price} quantity={product.quantity} />
+      <CofeeCard product={product} />
     </ContentCoffeeCard>
   )
 }

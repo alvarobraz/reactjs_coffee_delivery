@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
 import {
   Cart,
   ContentActions,
@@ -6,27 +8,24 @@ import {
   Counter,
 } from './style'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { NavLink } from 'react-router-dom'
+import { Context, PropsCardCoffee } from '../../contexts/Context'
 
-interface PropsBuy {
-  price: number | string
-  quantity: number
-}
+export function CofeeCard({ product }: PropsCardCoffee) {
+  const { saveMyProduct } = useContext(Context)
 
-export function CofeeCard({ price, quantity }: PropsBuy) {
   return (
     <ContentBuy>
       <ContentPrice>
         <span>R$&nbsp;</span>
-        <p>{price}</p>
+        <p>{product.priceResult}</p>
       </ContentPrice>
       <ContentActions>
         <Counter>
-          <button>
+          <button onClick={() => saveMyProduct(product, 'less')}>
             <Minus size={15} />
           </button>
-          <span>{quantity}</span>
-          <button>
+          <span>{product.quantity}</span>
+          <button onClick={() => saveMyProduct(product, 'more')}>
             <Plus size={15} />
           </button>
         </Counter>
