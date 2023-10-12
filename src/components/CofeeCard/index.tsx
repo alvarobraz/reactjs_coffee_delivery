@@ -13,8 +13,6 @@ import { Context, PropsCardCoffee } from '../../contexts/Context'
 export function CofeeCard({ product }: PropsCardCoffee) {
   const { countAndSaveMyProduct } = useContext(Context)
 
-  // console.log('product.id -> ' + product.id)
-
   return (
     <ContentBuy>
       <ContentPrice>

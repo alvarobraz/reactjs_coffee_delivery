@@ -41,6 +41,7 @@ interface ContextType {
   countAndSaveMyProduct: (product: number, counter: string) => void
   countMyProducts: number
   totalMyProducts: number
+  myProducts: PropsProductCoffee[]
 }
 
 export const Context = createContext({} as ContextType)
@@ -337,6 +338,7 @@ export function ContextProvider({ children }: ContextProps) {
         countAndSaveMyProduct,
         countMyProducts,
         totalMyProducts,
+        myProducts,
       }}
     >
       {children}
