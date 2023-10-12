@@ -11,21 +11,23 @@ import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { Context, PropsCardCoffee } from '../../contexts/Context'
 
 export function CofeeCard({ product }: PropsCardCoffee) {
-  const { saveMyProduct } = useContext(Context)
+  const { countAndSaveMyProduct } = useContext(Context)
+
+  // console.log('product.id -> ' + product.id)
 
   return (
     <ContentBuy>
       <ContentPrice>
         <span>R$&nbsp;</span>
-        <p>{product.priceResult}</p>
+        <p>{product.price}</p>
       </ContentPrice>
       <ContentActions>
         <Counter>
-          <button onClick={() => saveMyProduct(product, 'less')}>
+          <button onClick={() => countAndSaveMyProduct(product?.id, 'less')}>
             <Minus size={15} />
           </button>
           <span>{product.quantity}</span>
-          <button onClick={() => saveMyProduct(product, 'more')}>
+          <button onClick={() => countAndSaveMyProduct(product?.id, 'more')}>
             <Plus size={15} />
           </button>
         </Counter>

@@ -31,8 +31,8 @@ export function Home() {
       <H3>Nossos Cafés</H3>
       <CoffeeList>
         {products.length !== 0
-          ? products.map((product, index) => (
-              <CardCoffee key={index} product={product} />
+          ? products.map((product) => (
+              <CardCoffee key={product.id} product={product} />
             ))
           : ''}
       </CoffeeList>
