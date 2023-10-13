@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ContentCheckout = styled.form`
+export const ContentCheckout = styled.main`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -10,7 +10,7 @@ export const ContentCheckout = styled.form`
   margin-top: 2.5rem;
   margin-bottom: 15rem;
 
-  > div {
+  > form {
     width: 40rem;
     height: auto;
 
@@ -26,7 +26,7 @@ export const ContentCheckout = styled.form`
     }
   }
 
-  > div + div {
+  > div {
     width: 28rem;
     height: 36.9375rem;
 
@@ -207,4 +207,73 @@ export const ConfirmOrder = styled.div`
   justify-content: flex-start;
 
   margin-bottom: 12px;
+
+  > div + div + div {
+    width: 23rem;
+    height: 5.75rem;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 13.5px;
+
+      p {
+        font-family: 'Roboto', cursive, sans-serif;
+        color: ${(props) => props.theme['base-text']};
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 130%;
+      }
+
+      span {
+        font-family: 'Roboto', cursive, sans-serif;
+        color: ${(props) => props.theme['base-text']};
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 130%;
+      }
+    }
+
+    > div + div + div {
+      p {
+        font-size: 1.25rem;
+        font-weight: 800;
+      }
+      span {
+        font-size: 1.25rem;
+        font-weight: 800;
+      }
+    }
+  }
+`
+export const ButtonConfirm = styled.button`
+  background: ${(props) => props.theme.yellow};
+
+  width: 23rem;
+  height: 3.0625rem;
+
+  border: 0;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 1.5rem;
+
+  font-family: 'Roboto', cursive, sans-serif;
+  color: ${(props) => props.theme.white};
+  font-weight: 800;
+  font-size: 0.875rem;
+  line-height: 160%;
+
+  transition: 0.5s;
+
+  &:hover {
+    background: ${(props) => props.theme['yellow-dark']};
+  }
 `

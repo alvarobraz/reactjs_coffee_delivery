@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
 import { calcTotalMyProducts } from '../utils'
 
-interface PropsProductCoffee {
+export interface PropsProductCoffee {
   id: number
   img: string
   types: string[]
@@ -42,6 +42,7 @@ interface ContextType {
   countMyProducts: number
   totalMyProducts: number
   myProducts: PropsProductCoffee[]
+  handleDeleteMyProduct: (product: number) => void
 }
 
 export const Context = createContext({} as ContextType)
@@ -321,6 +322,10 @@ export function ContextProvider({ children }: ContextProps) {
     return counter
   }, 0)
 
+  async function handleDeleteMyProduct(productId: number) {
+    console.log('productId -> ' + productId)
+  }
+
   useEffect(() => {
     setTotalMyProducts(total)
     setCountMyProducts(countTotalMyProducts)
@@ -339,6 +344,7 @@ export function ContextProvider({ children }: ContextProps) {
         countMyProducts,
         totalMyProducts,
         myProducts,
+        handleDeleteMyProduct,
       }}
     >
       {children}

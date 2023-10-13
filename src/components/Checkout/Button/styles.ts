@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export type TypeVariant = 'card' | 'debit' | 'money'
+export type TypeVariant = 'card' | 'debit' | 'money' | 'trash'
 
 interface TypeContainerProps {
   variant?: TypeVariant
@@ -16,23 +16,33 @@ export const ContentButton = styled.button<TypeContainerProps>`
   align-items: center;
   text-align: center;
 
-  width: 11.125rem;
-  height: 3.1875rem;
+  width: ${(props) => (props.variant === 'trash' ? '5.6875rem' : '11.125rem')};
+  height: ${(props) => (props.variant === 'trash' ? '100%' : '3.1875rem')};
 
   border-radius: 6px;
-  border: 1px solid;
   cursor: pointer;
 
+  gap: 0.25rem;
+
   svg {
-    margin-left: 1rem;
+    color: ${(props) => props.theme['purple-dark']};
+    margin-left: ${(props) => (props.variant === 'trash' ? '0.5rem' : '1rem')};
   }
 
   span {
-    padding-top: 0.1rem;
+    padding-top: ${(props) => (props.variant === 'trash' ? '0' : '0.1rem')};
     font-family: 'Roboto', cursive, sans-serif;
     color: ${(props) => props.theme['base-text']};
     font-weight: 400;
     font-size: 0.75rem;
     line-height: 130%;
+
+    &:hover {
+      color: ${(props) => props.theme['base-subtitle']};
+    }
+  }
+
+  &:hover {
+    background: ${(props) => props.theme['base-hover']};
   }
 `

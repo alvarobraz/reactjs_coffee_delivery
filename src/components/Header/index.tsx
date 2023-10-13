@@ -4,6 +4,7 @@ import { MapPin, ShoppingCart } from 'phosphor-react'
 import { Cart, Counter, HeaderContainer, Weather } from './styles'
 import { NavLink } from 'react-router-dom'
 import { Context } from '../../contexts/Context'
+import { ButtonCart } from '../App/ButtonCart'
 
 export function Header() {
   const { countMyProducts } = useContext(Context)
@@ -64,14 +65,15 @@ export function Header() {
           <MapPin size={22} />
           <p>{isLoading ? 'carregando...' : `${cidade}, ${estado}`}</p>
         </Weather>
-        <Cart>
+        {/* <Cart>
           <NavLink to="/checkout  ">
             <ShoppingCart size={22} />
           </NavLink>
         </Cart>
         <Counter>
           <p>{countMyProducts}</p>
-        </Counter>
+        </Counter> */}
+        <ButtonCart variant="header" />
       </nav>
     </HeaderContainer>
   )

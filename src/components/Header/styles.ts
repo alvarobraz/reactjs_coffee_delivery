@@ -10,14 +10,6 @@ export const HeaderContainer = styled.header`
   nav {
     display: flex;
     gap: 0.7rem;
-    a {
-      width: auto;
-      height: 2.375;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
   }
 `
 

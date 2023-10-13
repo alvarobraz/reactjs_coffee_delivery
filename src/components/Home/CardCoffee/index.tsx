@@ -1,8 +1,7 @@
 import { ContentCoffeeCard, ContentType } from './style'
-
-import { TypeCoffee } from '../TypeCoffee'
-import { CofeeCard } from '../CofeeCard'
-import { PropsCardCoffee } from '../../contexts/Context'
+import { TypeCoffee } from '../../Home/TypeCoffee'
+import { CofeeCard } from '../../Home/CofeeCard'
+import { PropsCardCoffee } from '../../../contexts/Context'
 
 export function CardCoffee({ product }: PropsCardCoffee) {
   return (

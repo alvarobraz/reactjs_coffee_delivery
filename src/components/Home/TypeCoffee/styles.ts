@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const TypeContent = styled.div`
   background: ${(props) => props.theme['yellow-light']};
 
-  width: 3.875rem;
+  width: 5.0625rem;
   height: 1.3125rem;
 
   display: flex;

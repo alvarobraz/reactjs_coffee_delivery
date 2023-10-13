@@ -1,8 +1,6 @@
-// import { useContext } from 'react'
-// import { Context } from '../../contexts/Context'
-
 import { useState } from 'react'
-import { Button } from '../../components/Button'
+import { PropsProductCoffee } from '../../contexts/Context'
+import { Button } from '../../components/Checkout/Button'
 import {
   BaseInput,
   CompleteYourOrder,
@@ -10,15 +8,17 @@ import {
   Box,
   FormOfPayment,
   ConfirmOrder,
+  ButtonConfirm,
 } from './styles'
 import { MapPinLine, CurrencyDollar } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
+import { MyOrder } from '../../components/Checkout/MyOrder'
 
 export function Checkout() {
-  // const { totalMyProducts, myProducts } = useContext(Context)
+  // const { handleDeleteMyProduct } = useContext(Context)
 
   // console.log(totalMyProducts)
-  const { register, handleSubmit, watch } = useForm({
+  const { register, handleSubmit } = useForm({
     // resolver: zodResolver(newCycleFormValidationSchema),
   })
 
@@ -26,16 +26,28 @@ export function Checkout() {
 
   // console.log('isSelected -> ' + isSelected)
 
-  function handleCreateDeliveryAddress(data: any) {
+  function handleCreateDeliveryAddress(data: Partial<PropsProductCoffee>) {
     console.log('data ->' + JSON.stringify(data))
+    // return data
+  }
+
+  const product = {
+    id: 1,
+    img: 'http://localhost:5173/expresso_tradicional.svg',
+    types: ['TRADICIONAL', 'COM LEITE'],
+    name: 'Expresso Tradicional',
+    description: 'O tradicional café feito com água quente e grãos moídos',
+    price: 5,
+    quantity: 0,
+    valueProduct: 0,
   }
 
   return (
     <>
       {/* <h1>Checkout - Total de produtos: {totalMyProducts}</h1>
       <p>{JSON.stringify(myProducts)}</p> */}
-      <ContentCheckout onSubmit={handleSubmit(handleCreateDeliveryAddress)}>
-        <div>
+      <ContentCheckout>
+        <form onSubmit={handleSubmit(handleCreateDeliveryAddress)}>
           <h1>Complete seu pedido</h1>
           <CompleteYourOrder>
             <Box variant="map">
@@ -126,10 +138,28 @@ export function Checkout() {
               />
             </Box>
           </FormOfPayment>
-        </div>
+        </form>
         <div>
           <h1>Cafés selecionados</h1>
-          <ConfirmOrder></ConfirmOrder>
+          <ConfirmOrder>
+            <MyOrder product={product} />
+            <MyOrder product={product} />
+            <div>
+              <div>
+                <p>Total de itens</p>
+                <span>R$ 29,70</span>
+              </div>
+              <div>
+                <p>Entrega</p>
+                <span>R$ 3,50</span>
+              </div>
+              <div>
+                <p>Total</p>
+                <span>R$ 32,20</span>
+              </div>
+            </div>
+            <ButtonConfirm>CONFIRMAR PEDIDO</ButtonConfirm>
+          </ConfirmOrder>
         </div>
       </ContentCheckout>
     </>
