@@ -11,3 +11,12 @@ export function calcTotalMyProducts(myProducts: PropsMyProductCoffee[]) {
   }
   return 0
 }
+
+export function formatPrice(price: number) {
+  const roundedPrice = parseFloat(price.toFixed(2))
+
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(roundedPrice)
+}

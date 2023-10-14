@@ -1,20 +1,20 @@
 import styled from 'styled-components'
 
-export const ContentOrder = styled.div`
+export const ContentOrder = styled.section`
   /* background: ${(props) => props.theme['yellow-dark']}; */
 
   width: 100%;
-  height: 6.5rem;
+  /* height: 8rem; */
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 
-  margin-bottom: 1.5rem;
+  /* padding-bottom: 1.5rem; */
 
   border-bottom: 1px solid ${(props) => props.theme['base-button']};
-  padding: 0.5rem 0.25rem 0.5rem 0.25rem;
+  padding: 0.5rem 0.25rem 1.5rem 0.25rem;
 
   img {
     width: 4rem;

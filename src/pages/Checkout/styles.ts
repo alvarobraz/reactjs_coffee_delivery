@@ -45,7 +45,7 @@ export const CompleteYourOrder = styled.div`
   background: ${(props) => props.theme['base-card']};
 
   width: 100%;
-  height: 23.25rem;
+  height: auto;
 
   border-radius: 6px;
 
@@ -63,6 +63,18 @@ export const CompleteYourOrder = styled.div`
 
     margin-bottom: 1rem;
     gap: 12px;
+  }
+
+  > span {
+    font-family: 'Roboto', cursive, sans-serif;
+    color: ${(props) => props.theme.danger};
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 130%;
+
+    position: relative;
+
+    top: -0.5rem;
   }
 `
 export type TypeVariant = 'map' | 'dollar' | 'buttons'
@@ -196,7 +208,7 @@ export const ConfirmOrder = styled.div`
   background: ${(props) => props.theme['base-card']};
 
   width: 100%;
-  height: 31.125rem;
+  height: auto;
 
   border-radius: 6px 44px;
 
@@ -208,9 +220,15 @@ export const ConfirmOrder = styled.div`
 
   margin-bottom: 12px;
 
-  > div + div + div {
+  > section + section {
+    padding: 1.5rem 0.25rem 1.5rem 0.25rem;
+  }
+
+  > div {
     width: 23rem;
-    height: 5.75rem;
+    height: auto;
+
+    padding: 1.5rem 0;
 
     > div {
       display: flex;
@@ -226,7 +244,7 @@ export const ConfirmOrder = styled.div`
         line-height: 130%;
       }
 
-      span {
+      > span {
         font-family: 'Roboto', cursive, sans-serif;
         color: ${(props) => props.theme['base-text']};
         font-weight: 400;
@@ -240,7 +258,7 @@ export const ConfirmOrder = styled.div`
         font-size: 1.25rem;
         font-weight: 800;
       }
-      span {
+      > span {
         font-size: 1.25rem;
         font-weight: 800;
       }
@@ -263,7 +281,7 @@ export const ButtonConfirm = styled.button`
   justify-content: center;
   align-items: center;
 
-  margin-top: 1.5rem;
+  /* margin-top: 3rem; */
 
   font-family: 'Roboto', cursive, sans-serif;
   color: ${(props) => props.theme.white};
@@ -276,4 +294,40 @@ export const ButtonConfirm = styled.button`
   &:hover {
     background: ${(props) => props.theme['yellow-dark']};
   }
+`
+
+export type TypeErrorVariant = 'one' | 'two'
+
+interface TypeErrorProps {
+  variant?: TypeErrorVariant
+}
+
+export const Erros = styled.caption<TypeErrorProps>`
+  display: flex;
+  flex-direction: row;
+  justify-content: ${(props) =>
+    props.variant === 'two'
+      ? 'space-between'
+      : props.variant === 'one'
+      ? 'flex-end'
+      : 'space-between'};
+
+  margin-left: ${(props) =>
+    props.variant === 'two' ? '13.5rem' : props.variant === 'one' ? '0' : 0};
+
+  gap: 0.5rem;
+
+  margin-bottom: 0.5rem;
+
+  > span {
+    font-family: 'Roboto', cursive, sans-serif;
+    color: ${(props) => props.theme.danger};
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 130%;
+
+    position: relative;
+  }
+
+  /* top: -0.5rem; */
 `

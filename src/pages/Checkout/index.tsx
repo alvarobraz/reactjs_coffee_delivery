@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { PropsProductCoffee } from '../../contexts/Context'
+import { useContext, useState } from 'react'
+import { Context } from '../../contexts/Context'
 import { Button } from '../../components/Checkout/Button'
 import {
   BaseInput,
@@ -9,38 +9,49 @@ import {
   FormOfPayment,
   ConfirmOrder,
   ButtonConfirm,
+  Erros,
 } from './styles'
 import { MapPinLine, CurrencyDollar } from 'phosphor-react'
-import { useForm } from 'react-hook-form'
 import { MyOrder } from '../../components/Checkout/MyOrder'
+import { formatPrice } from '../../utils'
+import * as zod from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 export function Checkout() {
-  // const { handleDeleteMyProduct } = useContext(Context)
+  const { myProducts, totalMyProducts } = useContext(Context)
 
-  // console.log(totalMyProducts)
-  const { register, handleSubmit } = useForm({
-    // resolver: zodResolver(newCycleFormValidationSchema),
+  const FormValidationSchema = zod.object({
+    cep: zod.string().optional(),
+    logradouro: zod.string().min(1, 'Informe a Rua'),
+    numero: zod.string().min(1, 'Informe o Número'),
+    complemento: zod.string().optional(),
+    bairro: zod.string().min(1, 'Informe o Bairro'),
+    localidade: zod.string().min(1, 'Informe a Cidade'),
+    uf: zod.string().min(1, 'Informe o Estado'),
+  })
+  type NewCycleFormData = zod.infer<typeof FormValidationSchema>
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Partial<NewCycleFormData>>({
+    resolver: zodResolver(FormValidationSchema),
   })
 
   const [isSelected, setIsSelected] = useState<string | undefined>('')
 
   // console.log('isSelected -> ' + isSelected)
 
-  function handleCreateDeliveryAddress(data: Partial<PropsProductCoffee>) {
+  function handleCreateDeliveryAddress(data: Partial<NewCycleFormData>) {
     console.log('data ->' + JSON.stringify(data))
     // return data
   }
 
-  const product = {
-    id: 1,
-    img: 'http://localhost:5173/expresso_tradicional.svg',
-    types: ['TRADICIONAL', 'COM LEITE'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: 5,
-    quantity: 0,
-    valueProduct: 0,
-  }
+  // console.log('errors -> ' + errors)
+
+  const deliveryPrice = 3.5
 
   return (
     <>
@@ -62,7 +73,9 @@ export function Checkout() {
                 <input placeholder="CEP" id="cep" {...register('cep')} />
                 <span className="optional-text">Opcional</span>
               </BaseInput>
+              {/* <ErrorMessage errors={errors} name="cep" /> */}
             </Box>
+            {errors.logradouro && <span>{errors.logradouro.message}</span>}
             <Box>
               <BaseInput type="two">
                 <input
@@ -72,6 +85,7 @@ export function Checkout() {
                 />
               </BaseInput>
             </Box>
+            {errors.numero && <span>{errors.numero.message}</span>}
             <Box>
               <BaseInput type="one">
                 <input
@@ -89,6 +103,32 @@ export function Checkout() {
                 <span className="optional-text">Opcional</span>
               </BaseInput>
             </Box>
+            {errors.bairro && errors.localidade && errors.uf ? (
+              <Erros>
+                {errors.bairro && <span>{errors.bairro.message}</span>}
+                {errors.localidade && <span>{errors.localidade.message}</span>}
+                {errors.uf && <span>{errors.uf.message}</span>}
+              </Erros>
+            ) : (
+              ''
+            )}
+            {errors.bairro === undefined && errors.localidade && errors.uf ? (
+              <Erros variant="two">
+                {errors.localidade && <span>{errors.localidade.message}</span>}
+                {errors.uf && <span>{errors.uf.message}</span>}
+              </Erros>
+            ) : (
+              ''
+            )}
+            {errors.bairro === undefined &&
+            errors.localidade === undefined &&
+            errors.uf ? (
+              <Erros variant="one">
+                {errors.uf && <span>{errors.uf.message}</span>}
+              </Erros>
+            ) : (
+              ''
+            )}
             <Box>
               <BaseInput type="one">
                 <input
@@ -142,20 +182,23 @@ export function Checkout() {
         <div>
           <h1>Cafés selecionados</h1>
           <ConfirmOrder>
-            <MyOrder product={product} />
-            <MyOrder product={product} />
+            {myProducts.length !== 0
+              ? myProducts.map((product) => (
+                  <MyOrder key={product.id} product={product} />
+                ))
+              : ''}
             <div>
               <div>
                 <p>Total de itens</p>
-                <span>R$ 29,70</span>
+                <span>{formatPrice(totalMyProducts)}</span>
               </div>
               <div>
                 <p>Entrega</p>
-                <span>R$ 3,50</span>
+                <span>{formatPrice(deliveryPrice)}</span>
               </div>
               <div>
                 <p>Total</p>
-                <span>R$ 32,20</span>
+                <span>{formatPrice(totalMyProducts + deliveryPrice)}</span>
               </div>
             </div>
             <ButtonConfirm>CONFIRMAR PEDIDO</ButtonConfirm>

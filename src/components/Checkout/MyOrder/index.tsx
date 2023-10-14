@@ -3,15 +3,16 @@ import { CounterQuantity } from '../../App/CounterQuantity'
 import { Button } from '../Button'
 import { ContentOrder, ContentTitleCounterRemove } from './styles'
 import { Context, PropsCardCoffee } from '../../../contexts/Context'
+import { formatPrice } from '../../../utils'
 
 export function MyOrder({ product }: PropsCardCoffee) {
   const { handleDeleteMyProduct } = useContext(Context)
   return (
     <>
       <ContentOrder>
-        <img src="http://localhost:5173/arabe.svg" alt="" />
+        <img src={product.img} alt="" />
         <ContentTitleCounterRemove>
-          <p>Expresso Tradicional</p>
+          <p>{product.name}</p>
           <div>
             <CounterQuantity product={product} />
             <Button
@@ -22,7 +23,7 @@ export function MyOrder({ product }: PropsCardCoffee) {
           </div>
         </ContentTitleCounterRemove>
         <div>
-          <p>R$ 19,80</p>
+          <p>{formatPrice(product.valueProduct)}</p>
         </div>
       </ContentOrder>
     </>
