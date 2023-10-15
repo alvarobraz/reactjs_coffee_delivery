@@ -20,3 +20,10 @@ export function formatPrice(price: number) {
     currency: 'BRL',
   }).format(roundedPrice)
 }
+
+export function formatPriceWithPrefix(price: number) {
+  if (typeof price === 'number') {
+    return price.toFixed(2).replace('.', ',')
+  }
+  return ''
+}

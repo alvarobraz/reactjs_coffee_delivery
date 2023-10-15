@@ -199,9 +199,13 @@ export function Checkout() {
           <h1>Cafés selecionados</h1>
           <ConfirmOrder>
             {myProducts?.length !== 0
-              ? myProducts?.map((product) => (
-                  <MyOrder key={product.id} product={product} />
-                ))
+              ? myProducts?.map((product) =>
+                  product.quantity !== 0 ? (
+                    <MyOrder key={product.id} product={product} />
+                  ) : (
+                    ''
+                  ),
+                )
               : ''}
             <div>
               <div>

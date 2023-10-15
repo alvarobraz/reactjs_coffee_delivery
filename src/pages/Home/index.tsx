@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { CoffeeList, ContentIntro, H3, InfoWrap } from './styles'
 import imgCoffeeIntro from '../../assets/img_coffee_intro.svg'
-// import { InfoWrapHome } from '../../components/InfoWrapHome'
 import { CardCoffee } from '../../components/Home/CardCoffee'
 import { Context } from '../../contexts/Context'
 import { InfoWrapHome } from '../../components/App/InfoWrapHome'

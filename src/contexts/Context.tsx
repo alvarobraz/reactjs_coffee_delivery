@@ -8,6 +8,16 @@ import {
 } from 'react'
 import { calcTotalMyProducts } from '../utils'
 
+import {
+  storageProductsSave,
+  storageProductsGet,
+} from '../storage/storageProducts'
+
+import {
+  storageMyProductsGet,
+  storageMyProductsSave,
+} from '../storage/storageMyproducts'
+
 export interface PropsProductCoffee {
   id: number
   img: string
@@ -236,7 +246,7 @@ export function ContextProvider({ children }: ContextProps) {
 
   async function countAndSaveMyProduct(productId: number, counter: string) {
     setProducts((prevProducts) => {
-      return prevProducts.map((product) => {
+      const updateProducts = prevProducts.map((product) => {
         if (product.id === productId) {
           const newQuantity =
             counter === 'more'
@@ -252,6 +262,10 @@ export function ContextProvider({ children }: ContextProps) {
         }
         return product
       })
+
+      storageProductsSave(updateProducts)
+
+      return updateProducts
     })
 
     if (counter === 'more') {
@@ -261,7 +275,7 @@ export function ContextProvider({ children }: ContextProps) {
         )
 
         if (existingProduct) {
-          return (prevMyProducts || []).map((product) => {
+          const updateMyProducts = (prevMyProducts || []).map((product) => {
             if (product.id === productId) {
               const newQuantity =
                 counter === 'more'
@@ -278,6 +292,9 @@ export function ContextProvider({ children }: ContextProps) {
             }
             return product
           })
+
+          storageMyProductsSave(updateMyProducts)
+          return updateMyProducts
         } else {
           const newProduct = products.find(
             (product) => product.id === productId,
@@ -286,7 +303,7 @@ export function ContextProvider({ children }: ContextProps) {
             const newQuantity = 1
             const newValueProduct = Number(newProduct.price) * newQuantity
 
-            return [
+            const updateMyProducts = [
               ...(prevMyProducts || []),
               {
                 ...newProduct,
@@ -295,6 +312,9 @@ export function ContextProvider({ children }: ContextProps) {
                 img: newProduct.img || '',
               },
             ]
+
+            storageMyProductsSave(updateMyProducts)
+            return updateMyProducts
           }
         }
       })
@@ -306,7 +326,7 @@ export function ContextProvider({ children }: ContextProps) {
         )
 
         if (existingProduct) {
-          return (prevMyProducts || []).map((product) => {
+          const updateMyProducts = (prevMyProducts || []).map((product) => {
             if (product.id === productId) {
               const newQuantity = Math.max(product.quantity - 1, 0)
               const newValueProduct = Number(product.price) * newQuantity
@@ -319,6 +339,9 @@ export function ContextProvider({ children }: ContextProps) {
             }
             return product
           })
+
+          storageMyProductsSave(updateMyProducts)
+          return updateMyProducts
         } else {
           const newProduct = products.find(
             (product) => product.id === productId,
@@ -327,7 +350,7 @@ export function ContextProvider({ children }: ContextProps) {
           if (newProduct) {
             const newQuantity = 1
             const newValueProduct = Number(newProduct.price) * newQuantity
-            return [
+            const updateMyProducts = [
               ...(prevMyProducts || []),
               {
                 ...newProduct,
@@ -336,6 +359,9 @@ export function ContextProvider({ children }: ContextProps) {
                 img: newProduct.img || '',
               },
             ]
+
+            storageMyProductsSave(updateMyProducts)
+            return updateMyProducts
           }
         }
       })
@@ -354,15 +380,31 @@ export function ContextProvider({ children }: ContextProps) {
     console.log('productId -> ' + productId)
   }
 
+  async function getLocalStorageProducts() {
+    const storageProducts = await storageProductsGet()
+    if (storageProducts.length) {
+      setProducts(storageProducts)
+    }
+  }
+
+  async function getLocalStorageMyProducts() {
+    const storageMyProducts = await storageMyProductsGet()
+    if (storageMyProducts.length) {
+      setMyProducts(storageMyProducts)
+    }
+  }
+
   useEffect(() => {
     setTotalMyProducts(total)
     setCountMyProducts(countTotalMyProducts!)
+    getLocalStorageProducts()
+    getLocalStorageMyProducts()
   }, [total, countTotalMyProducts])
 
-  console.log('adressDelivery')
-  console.log(JSON.stringify(adressDelivery))
-  console.log('paymentMethod')
-  console.log(JSON.stringify(paymentMethod))
+  // console.log('adressDelivery')
+  // console.log(JSON.stringify(adressDelivery))
+  // console.log('paymentMethod')
+  // console.log(JSON.stringify(paymentMethod))
 
   return (
     <Context.Provider
