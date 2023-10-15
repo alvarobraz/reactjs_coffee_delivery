@@ -1,4 +1,11 @@
-import { ReactNode, createContext, useEffect, useState } from 'react'
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useState,
+} from 'react'
 import { calcTotalMyProducts } from '../utils'
 
 export interface PropsProductCoffee {
@@ -36,13 +43,27 @@ export interface PropsMyProductCoffee {
   valueProduct: number
 }
 
+export interface PropsAdressDelivery {
+  cep?: string | undefined
+  logradouro: string | undefined
+  numero: string | undefined
+  complemento?: string | undefined
+  bairro: string | undefined
+  localidade: string | undefined
+  uf: string | undefined
+}
+
 interface ContextType {
   products: PropsProductCoffee[]
   countAndSaveMyProduct: (product: number, counter: string) => void
   countMyProducts: number
   totalMyProducts: number
-  myProducts: PropsProductCoffee[]
+  myProducts: PropsProductCoffee[] | undefined
   handleDeleteMyProduct: (product: number) => void
+  adressDelivery: PropsAdressDelivery | undefined
+  setAdressDelivery: Dispatch<SetStateAction<PropsAdressDelivery | undefined>>
+  setPaymentMethod: Dispatch<SetStateAction<string>>
+  paymentMethod: string
 }
 
 export const Context = createContext({} as ContextType)
@@ -202,9 +223,16 @@ export function ContextProvider({ children }: ContextProps) {
 
   const [products, setProducts] =
     useState<PropsProductCoffee[]>(defaultProducts)
-  const [myProducts, setMyProducts] = useState<PropsProductCoffee[]>([])
+  const [myProducts, setMyProducts] = useState<
+    PropsProductCoffee[] | undefined
+  >([])
   const [countMyProducts, setCountMyProducts] = useState<number>(0)
   const [totalMyProducts, setTotalMyProducts] = useState<number>(0)
+
+  const [adressDelivery, setAdressDelivery] = useState<
+    PropsAdressDelivery | undefined
+  >()
+  const [paymentMethod, setPaymentMethod] = useState<string>('')
 
   async function countAndSaveMyProduct(productId: number, counter: string) {
     setProducts((prevProducts) => {
@@ -228,7 +256,7 @@ export function ContextProvider({ children }: ContextProps) {
 
     if (counter === 'more') {
       setMyProducts((prevMyProducts) => {
-        const existingProduct = prevMyProducts.find(
+        const existingProduct = prevMyProducts?.find(
           (product) => product.id === productId,
         )
 
@@ -269,11 +297,11 @@ export function ContextProvider({ children }: ContextProps) {
             ]
           }
         }
-      }) ///
+      })
     }
     if (counter === 'less') {
       setMyProducts((prevMyProducts) => {
-        const existingProduct = prevMyProducts.find(
+        const existingProduct = prevMyProducts?.find(
           (product) => product.id === productId,
         )
 
@@ -314,8 +342,8 @@ export function ContextProvider({ children }: ContextProps) {
     }
   }
 
-  const total = calcTotalMyProducts(myProducts)
-  const countTotalMyProducts = myProducts.reduce((counter, myProduct) => {
+  const total = calcTotalMyProducts(myProducts!)
+  const countTotalMyProducts = myProducts?.reduce((counter, myProduct) => {
     if (myProduct.quantity !== 0) {
       return counter + 1
     }
@@ -328,13 +356,13 @@ export function ContextProvider({ children }: ContextProps) {
 
   useEffect(() => {
     setTotalMyProducts(total)
-    setCountMyProducts(countTotalMyProducts)
+    setCountMyProducts(countTotalMyProducts!)
   }, [total, countTotalMyProducts])
 
-  // console.log('myProducts')
-  // console.log(JSON.stringify(myProducts))
-  // console.log('products')
-  // console.log(JSON.stringify(products[0]))
+  console.log('adressDelivery')
+  console.log(JSON.stringify(adressDelivery))
+  console.log('paymentMethod')
+  console.log(JSON.stringify(paymentMethod))
 
   return (
     <Context.Provider
@@ -345,6 +373,10 @@ export function ContextProvider({ children }: ContextProps) {
         totalMyProducts,
         myProducts,
         handleDeleteMyProduct,
+        adressDelivery,
+        setAdressDelivery,
+        setPaymentMethod,
+        paymentMethod,
       }}
     >
       {children}

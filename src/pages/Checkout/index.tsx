@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Context } from '../../contexts/Context'
 import { Button } from '../../components/Checkout/Button'
 import {
@@ -17,9 +17,19 @@ import { formatPrice } from '../../utils'
 import * as zod from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
 
 export function Checkout() {
-  const { myProducts, totalMyProducts } = useContext(Context)
+  const navigate = useNavigate()
+
+  const {
+    myProducts,
+    totalMyProducts,
+    setAdressDelivery,
+    adressDelivery,
+    setPaymentMethod,
+    paymentMethod,
+  } = useContext(Context)
 
   const FormValidationSchema = zod.object({
     cep: zod.string().optional(),
@@ -36,22 +46,28 @@ export function Checkout() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Partial<NewCycleFormData>>({
+  } = useForm<NewCycleFormData>({
     resolver: zodResolver(FormValidationSchema),
   })
 
   const [isSelected, setIsSelected] = useState<string | undefined>('')
 
-  // console.log('isSelected -> ' + isSelected)
-
-  function handleCreateDeliveryAddress(data: Partial<NewCycleFormData>) {
+  function handleCreateDeliveryAddress(data: NewCycleFormData) {
     console.log('data ->' + JSON.stringify(data))
-    // return data
+    if (data !== undefined) setAdressDelivery(data)
   }
 
-  // console.log('errors -> ' + errors)
-
   const deliveryPrice = 3.5
+
+  async function handleConfirmOrder() {
+    if (adressDelivery !== undefined && paymentMethod !== undefined) {
+      navigate('/confirm-order')
+    }
+  }
+
+  useEffect(() => {
+    setPaymentMethod(isSelected!)
+  }, [isSelected])
 
   return (
     <>
@@ -182,8 +198,8 @@ export function Checkout() {
         <div>
           <h1>Cafés selecionados</h1>
           <ConfirmOrder>
-            {myProducts.length !== 0
-              ? myProducts.map((product) => (
+            {myProducts?.length !== 0
+              ? myProducts?.map((product) => (
                   <MyOrder key={product.id} product={product} />
                 ))
               : ''}
@@ -201,7 +217,9 @@ export function Checkout() {
                 <span>{formatPrice(totalMyProducts + deliveryPrice)}</span>
               </div>
             </div>
-            <ButtonConfirm>CONFIRMAR PEDIDO</ButtonConfirm>
+            <ButtonConfirm onClick={handleConfirmOrder}>
+              CONFIRMAR PEDIDO
+            </ButtonConfirm>
           </ConfirmOrder>
         </div>
       </ContentCheckout>

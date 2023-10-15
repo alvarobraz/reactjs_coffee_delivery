@@ -1,16 +1,11 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import logoCoffeeDelivery from '../../assets/logo_coffee_delivary.svg'
-import { MapPin, ShoppingCart } from 'phosphor-react'
-import { Cart, Counter, HeaderContainer, Weather } from './styles'
+import { MapPin } from 'phosphor-react'
+import { HeaderContainer, Weather } from './styles'
 import { NavLink } from 'react-router-dom'
-import { Context } from '../../contexts/Context'
 import { ButtonCart } from '../App/ButtonCart'
 
 export function Header() {
-  const { countMyProducts } = useContext(Context)
-
-  // const counrcard = 3
-
   const [cidade, setCidade] = useState('')
   const [estado, setEstado] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -65,14 +60,6 @@ export function Header() {
           <MapPin size={22} />
           <p>{isLoading ? 'carregando...' : `${cidade}, ${estado}`}</p>
         </Weather>
-        {/* <Cart>
-          <NavLink to="/checkout  ">
-            <ShoppingCart size={22} />
-          </NavLink>
-        </Cart>
-        <Counter>
-          <p>{countMyProducts}</p>
-        </Counter> */}
         <ButtonCart variant="header" />
       </nav>
     </HeaderContainer>
