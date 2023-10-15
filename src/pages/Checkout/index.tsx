@@ -214,7 +214,11 @@ export function Checkout() {
               </div>
               <div>
                 <p>Total</p>
-                <span>{formatPrice(totalMyProducts + deliveryPrice)}</span>
+                <span>
+                  {totalMyProducts === 0
+                    ? formatPrice(totalMyProducts)
+                    : formatPrice(totalMyProducts + deliveryPrice)}
+                </span>
               </div>
             </div>
             <ButtonConfirm onClick={handleConfirmOrder}>
