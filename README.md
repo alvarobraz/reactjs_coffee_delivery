@@ -4,7 +4,7 @@
   <br>
   <br>
 
-  <img alt="Language count" src="https://img.shields.io/github/repo-size/reactjs_coffee_delivery"/>
+  <img alt="Language count" src="https://img.shields.io/github/repo-size/alvarobraz/reactjs_coffee_delivery"/>
 
   <a href="https://rocketseat.com.br">
     <img alt="Made by Rocketseat" src="https://img.shields.io/badge/made%20by-Rocketseat-%237519C1">
@@ -14,11 +14,11 @@
     <img alt="Made by alvarobraz" src="https://img.shields.io/badge/made%20by-alvarobraz-%237519C1">
   </a>
 
-  <a href="https://github.com/reactjs_coffee_delivery/commits/main">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/reactjs_coffee_delivery">
+  <a href="https://github.com/alvarobraz/reactjs_coffee_delivery/commits/main">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alvarobraz/reactjs_coffee_delivery">
   </a>
 
-  <img alt="License" src="https://img.shields.io/github/license/reactjs_coffee_delivery">
+  <img alt="License" src="https://img.shields.io/github/license/alvarobraz/reactjs_coffee_delivery">
 </p>
 
 ---
@@ -159,10 +159,10 @@ As seguintes tecnologias foram utilizadas no projeto:
 
 ```bash
 # Clone this project
-$ git clone https://github.com/reactjs_coffee_delivery
+$ git clone https://github.com/alvarobraz/reactjs_coffee_delivery
 
 # Access
-$ cd reactjs_coffee_delivery
+$ cd alvarobraz/reactjs_coffee_delivery
 
 # Install dependencies
 $ yarn install
