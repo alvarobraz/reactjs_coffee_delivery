@@ -10,11 +10,15 @@ export const ContentCheckout = styled.main`
   margin-top: 2.5rem;
   margin-bottom: 15rem;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
   > form {
     width: 40rem;
     height: auto;
-
-    /* background: ${(props) => props.theme['yellow-light']}; */
 
     h1 {
       font-family: 'Baloo 2', cursive, sans-serif;
@@ -23,6 +27,10 @@ export const ContentCheckout = styled.main`
       font-size: 1.125rem;
       line-height: 130%;
       margin-bottom: 0.9375rem;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
     }
   }
 
@@ -37,6 +45,11 @@ export const ContentCheckout = styled.main`
       font-size: 1.125rem;
       line-height: 130%;
       margin-bottom: 0.9375rem;
+
+      @media (max-width: 768px) {
+        padding-top: 1rem;
+        text-align: left;
+      }
     }
   }
 `
@@ -57,12 +70,20 @@ export const CompleteYourOrder = styled.div`
 
   margin-bottom: 12px;
 
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
   > div {
     width: 100%;
     height: 2.625rem;
 
     margin-bottom: 1rem;
     gap: 12px;
+
+    @media (max-width: 768px) {
+      gap: 6px;
+    }
   }
 
   > span {
@@ -75,6 +96,9 @@ export const CompleteYourOrder = styled.div`
     position: relative;
 
     top: -0.5rem;
+    @media (max-width: 768px) {
+      font-size: 0.7rem;
+    }
   }
 `
 export type TypeVariant = 'map' | 'dollar' | 'buttons'
@@ -114,6 +138,10 @@ export const Box = styled.div<TypeContainerProps>`
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 130%;
+
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+    }
   }
 
   margin-bottom: 2rem;
@@ -135,6 +163,10 @@ export const BaseInput = styled.div<TypeInput>`
       : props.type === 'two'
       ? '100%'
       : '3.75rem'};
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
   input {
     background: ${(props) => props.theme['base-input']};
     height: 2.625rem;
@@ -158,6 +190,10 @@ export const BaseInput = styled.div<TypeInput>`
     }
     &::placeholder {
       color: ${(props) => props.theme['base-label']};
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
     }
   }
 
@@ -195,12 +231,20 @@ export const FormOfPayment = styled.section`
   flex-direction: column;
   justify-content: flex-start;
 
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
   > div {
     width: 100%;
     height: 2.625rem;
 
     margin-bottom: 2rem;
     gap: 12px;
+
+    @media (max-width: 768px) {
+      gap: 6px;
+    }
   }
 `
 
@@ -220,6 +264,11 @@ export const ConfirmOrder = styled.div`
 
   margin-bottom: 12px;
 
+  @media (max-width: 768px) {
+    width: 89%;
+    padding: 1rem;
+  }
+
   > section + section {
     padding: 1.5rem 0.25rem 1.5rem 0.25rem;
   }
@@ -229,6 +278,11 @@ export const ConfirmOrder = styled.div`
     height: auto;
 
     padding: 1.5rem 0;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      /* padding: 1.5rem; */
+    }
 
     > div {
       display: flex;
@@ -281,8 +335,6 @@ export const ButtonConfirm = styled.button`
   justify-content: center;
   align-items: center;
 
-  /* margin-top: 3rem; */
-
   font-family: 'Roboto', cursive, sans-serif;
   color: ${(props) => props.theme.white};
   font-weight: 800;
@@ -290,6 +342,10 @@ export const ButtonConfirm = styled.button`
   line-height: 160%;
 
   transition: 0.5s;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 
   &:hover {
     background: ${(props) => props.theme['yellow-dark']};
@@ -327,6 +383,10 @@ export const Erros = styled.caption<TypeErrorProps>`
     line-height: 130%;
 
     position: relative;
+
+    @media (max-width: 768px) {
+      font-size: 0.7rem;
+    }
   }
 
   /* top: -0.5rem; */

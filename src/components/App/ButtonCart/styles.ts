@@ -52,7 +52,7 @@ export const Counter = styled.div`
 
   position: relative;
   top: -8px;
-  right: 22px;
+  right: 13px;
 
   display: flex;
   justify-content: center;

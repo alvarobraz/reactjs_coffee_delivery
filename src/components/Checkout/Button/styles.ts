@@ -24,6 +24,10 @@ export const ContentButton = styled.button<TypeContainerProps>`
 
   gap: 0.25rem;
 
+  @media (max-width: 768px) {
+    text-align: left;
+  }
+
   svg {
     color: ${(props) => props.theme['purple-dark']};
     margin-left: ${(props) => (props.variant === 'trash' ? '0.5rem' : '1rem')};
@@ -36,6 +40,10 @@ export const ContentButton = styled.button<TypeContainerProps>`
     font-weight: 400;
     font-size: 0.75rem;
     line-height: 130%;
+
+    @media (max-width: 768px) {
+      font-size: 0.5rem;
+    }
 
     &:hover {
       color: ${(props) => props.theme['base-subtitle']};

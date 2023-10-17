@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src --ext .ts,.tsx --fix",
-    "server": "json-server -d 750 -w -p 3333 ./db.json"
+    "lint": "eslint src --ext .ts,.tsx --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",

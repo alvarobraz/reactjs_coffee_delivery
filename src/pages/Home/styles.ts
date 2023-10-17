@@ -10,6 +10,13 @@ export const ContentIntro = styled.div`
 
   margin-top: 5.75rem;
 
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
   > div {
     width: 36.75rem;
     display: flex;
@@ -21,6 +28,7 @@ export const ContentIntro = styled.div`
       font-weight: 800;
       font-size: 3rem;
       line-height: 130%;
+      text-align: left;
     }
 
     h2 {
@@ -33,11 +41,34 @@ export const ContentIntro = styled.div`
       line-height: 130%;
 
       padding-top: 1rem;
+      text-align: left;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+
+      h1 {
+        padding-top: 1rem;
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1rem;
+      }
     }
   }
 
   > div:nth-child(2) {
     width: 29.75rem;
+
+    @media (max-width: 768px) {
+      width: 100%;
+
+      img {
+        margin: 0 auto;
+        width: 50%;
+      }
+    }
   }
 `
 export const InfoWrap = styled.section`
@@ -50,6 +81,12 @@ export const InfoWrap = styled.section`
   padding-top: 4.125rem;
   padding-bottom: 6.75rem;
   gap: 1.25rem;
+
+  @media (max-width: 768px) {
+    padding-top: 2rem;
+    padding-bottom: 0rem;
+    gap: 1rem;
+  }
 `
 export const CoffeeList = styled.main`
   width: 100%;
@@ -60,6 +97,11 @@ export const CoffeeList = styled.main`
   justify-content: flex-start;
   align-items: center;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    align-items: center;
+  }
 `
 export const H3 = styled.h3`
   width: 100%;
@@ -78,4 +120,11 @@ export const H3 = styled.h3`
 
   padding-top: 3rem;
   padding-bottom: 2.125rem;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 2rem;
+  }
 `

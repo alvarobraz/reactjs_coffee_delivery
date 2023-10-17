@@ -9,6 +9,10 @@ export const ContentBuy = styled.div`
   justify-content: space-between;
   align-items: center;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding-bottom: 1rem;
+  }
 `
 export const ContentPrice = styled.div`
   /* background: ${(props) => props.theme['yellow-dark']}; */

@@ -10,6 +10,10 @@ export const ContentConfirmOrder = styled.header`
   margin-top: 2.5rem;
   margin-bottom: 15rem;
 
+  @media (max-width: 768px) {
+    font-size: 5rem;
+  }
+
   h1 {
     color: ${(props) => props.theme['yellow-dark']};
 
@@ -19,6 +23,9 @@ export const ContentConfirmOrder = styled.header`
     font-weight: 800;
     font-size: 2rem;
     line-height: 130%;
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
   }
 
   h2 {
@@ -30,6 +37,10 @@ export const ContentConfirmOrder = styled.header`
     font-weight: 400;
     font-size: 1.25rem;
     line-height: 130%;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 `
 
@@ -41,6 +52,11 @@ export const PaymentMethod = styled.main`
   align-items: flex-start;
 
   margin-top: 2.5rem;
+
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+    flex-direction: column-reverse;
+  }
 
   > div {
     width: 32.875rem;
@@ -54,6 +70,10 @@ export const PaymentMethod = styled.main`
     padding: 1px;
 
     border-radius: 6px 36px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
 
     > div {
       background: ${(props) => props.theme['base-background']};
@@ -69,6 +89,10 @@ export const PaymentMethod = styled.main`
       padding: 2.5rem;
 
       border-radius: 6px 36px;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
     }
   }
 
@@ -85,6 +109,10 @@ export const PaymentMethod = styled.main`
     img {
       width: 30.75rem;
       height: 16.875rem;
+
+      @media (max-width: 768px) {
+        width: 80%;
+      }
     }
   }
 `

@@ -3,13 +3,29 @@ import styled from 'styled-components'
 export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
+  flex-direction: row;
   justify-content: space-between;
   a img {
     padding: 2rem 0;
   }
   nav {
     display: flex;
-    gap: 0.7rem;
+    flex-direction: row;
+    justify-content: space-between;
+
+    position: relative;
+    right: -20px;
+  }
+
+  @media (max-width: 768px) {
+    a img {
+      position: relative;
+      top: 0.3rem;
+
+      width: 75%;
+
+      padding: 1rem 0;
+    }
   }
 `
 
@@ -27,6 +43,8 @@ export const Weather = styled.div`
   gap: 0.5rem;
 
   border-radius: 6px;
+
+  margin-right: 0.7rem;
 
   svg {
     color: ${(props) => props.theme.purple};
@@ -70,7 +88,7 @@ export const Counter = styled.div`
 
   position: relative;
   top: -8px;
-  right: 22px;
+  /* right: 22px; */
 
   display: flex;
   justify-content: center;
