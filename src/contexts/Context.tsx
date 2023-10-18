@@ -86,7 +86,7 @@ export function ContextProvider({ children }: ContextProps) {
   const defaultProducts = [
     {
       id: 1,
-      img: 'http://localhost:5173/expresso_tradicional.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/expresso_tradicional.svg',
       types: ['TRADICIONAL', 'COM LEITE'],
       name: 'Expresso Tradicional',
       description: 'O tradicional café feito com água quente e grãos moídos',
@@ -96,7 +96,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 2,
-      img: 'http://localhost:5173/expresso_americano.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/expresso_americano.svg',
       types: ['TRADICIONAL'],
       name: 'Expresso americano',
       description: 'Expresso diluído, menos intenso que o tradicional',
@@ -106,7 +106,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 3,
-      img: 'http://localhost:5173/expresso_cremoso.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/expresso_cremoso.svg',
       types: ['TRADICIONAL'],
       name: 'Expresso Cremoso',
       description: 'Café expresso tradicional com espuma cremosa',
@@ -116,7 +116,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 4,
-      img: 'http://localhost:5173/expresso_gelado.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/expresso_gelado.svg',
       types: ['TRADICIONAL', 'GELADO'],
       name: 'Expresso Gelado',
       description: 'Bebida preparada com café expresso e cubos de gelo',
@@ -126,7 +126,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 5,
-      img: 'http://localhost:5173/cafe_com_leite.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/cafe_com_leite.svg',
       types: ['TRADICIONAL', 'COM LEITE'],
       name: 'Café com Leite',
       description: 'Meio a meio de expresso tradicional com leite vaporizado',
@@ -136,7 +136,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 6,
-      img: 'http://localhost:5173/cafe_latte.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/cafe_latte.svg',
       types: ['TRADICIONAL', 'COM LEITE'],
       name: 'Latte',
       description:
@@ -147,7 +147,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 7,
-      img: 'http://localhost:5173/capuccino.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/capuccino.svg',
       types: ['TRADICIONAL', 'COM LEITE'],
       name: 'Capuccino',
       description:
@@ -158,7 +158,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 8,
-      img: 'http://localhost:5173/macchiato.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/macchiato.svg',
       types: ['TRADICIONAL', 'COM LEITE'],
       name: 'Macchiato',
       description:
@@ -169,7 +169,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 9,
-      img: 'http://localhost:5173/mocaccino.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/mocaccino.svg',
       types: ['TRADICIONAL', 'COM LEITE'],
       name: 'Mocaccino',
       description: 'Café expresso com calda de chocolate, pouco leite e espuma',
@@ -179,7 +179,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 10,
-      img: 'http://localhost:5173/chocolate_quente.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/chocolate_quente.svg',
       types: ['TRADICIONAL', 'COM LEITE'],
       name: 'Chocolate Quente',
       description:
@@ -190,7 +190,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 11,
-      img: 'http://localhost:5173/cubano.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/cubano.svg',
       types: ['ESPECIAL', 'ALCOÓLICO', 'GELADO'],
       name: 'Cubano',
       description:
@@ -201,7 +201,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 12,
-      img: 'http://localhost:5173/havaiano.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/havaiano.svg',
       types: ['ESPECIAL'],
       name: 'Havaiano',
       description: 'Bebida adocicada preparada com café e leite de coco',
@@ -211,7 +211,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 13,
-      img: 'http://localhost:5173/arabe.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/arabe.svg',
       types: ['ESPECIAL'],
       name: 'Árabe',
       description: 'Bebida preparada com grãos de café árabe e especiarias',
@@ -221,7 +221,7 @@ export function ContextProvider({ children }: ContextProps) {
     },
     {
       id: 14,
-      img: 'http://localhost:5173/irlandes.svg',
+      img: 'https://reactjs-coffee-delivery.vercel.app/irlandes.svg',
       types: ['ESPECIAL', 'ALCOÓLICO'],
       name: 'Irlândes',
       description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
